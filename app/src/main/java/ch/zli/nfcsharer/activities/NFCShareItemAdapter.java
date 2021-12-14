@@ -63,7 +63,7 @@ public class NFCShareItemAdapter extends RecyclerView.Adapter<NFCShareItemAdapte
             activity.reloadRecyclerViewAdapter();
         });
         holder.editButton.setOnClickListener(listener ->{
-            activity.editItem();
+            activity.editItem(nfcShareItem);
         });
     }
 

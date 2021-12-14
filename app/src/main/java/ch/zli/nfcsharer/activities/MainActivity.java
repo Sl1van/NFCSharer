@@ -11,6 +11,9 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.widget.Button;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import ch.zli.nfcsharer.R;
 import ch.zli.nfcsharer.domain.NFCShareItem;
@@ -18,9 +21,10 @@ import ch.zli.nfcsharer.service.StorageService;
 
 public class MainActivity extends AppCompatActivity {
 
-    RecyclerView recyclerView;
+    private RecyclerView recyclerView;
+    private FloatingActionButton addButton;
 
-    NFCShareItemAdapter nFCShareItemAdapter;
+    private NFCShareItemAdapter nFCShareItemAdapter;
 
     private StorageService storageService;
     private boolean storageServiceBound = false;
@@ -60,6 +64,11 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        addButton  =findViewById(R.id.addButton);
+        addButton.setOnClickListener(listener ->{
+            addItem();
+        });
     }
 
     @Override
@@ -89,7 +98,14 @@ public class MainActivity extends AppCompatActivity {
             throw new RuntimeException("StorageService not yet bound");
         }
     }
-    public void editItem(){
-        //TODO open view
+    public void editItem(NFCShareItem item){
+        Intent resultIntent = new Intent(this, EditActivity.class);
+        resultIntent.putExtra("item", item);
+        startActivity(resultIntent);
+    }
+
+    public void addItem(){
+        Intent resultIntent = new Intent(this, EditActivity.class);
+        startActivity(resultIntent);
     }
 }
