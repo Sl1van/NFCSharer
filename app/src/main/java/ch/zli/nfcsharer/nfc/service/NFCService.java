@@ -1,19 +1,29 @@
 package ch.zli.nfcsharer.nfc.service;
 
-        import android.content.Intent;
-        import android.nfc.cardemulation.HostApduService;
-        import android.os.Bundle;
-        import android.os.IBinder;
+import android.app.Service;
+import android.content.Intent;
+import android.os.Binder;
+import android.os.IBinder;
 
-public class NFCService extends HostApduService {
+import ch.zli.nfcsharer.service.StorageService;
+
+public class NFCService extends Service {
+    private NFCService.LocalBinder binder = new NFCService.LocalBinder();
+
+
     @Override
-    public byte[] processCommandApdu(byte[] apdu, Bundle extras) {
-        //...
-        return null;
+    public IBinder onBind(Intent intent) {
+        return binder;
     }
 
-    @Override
-    public void onDeactivated(int reason) {
-        //...
+    public class LocalBinder extends Binder {
+        public NFCService getService() {
+            return NFCService.this;
+        }
     }
+
+    public void createUriTag(String uri){
+
+    }
+
 }
