@@ -19,12 +19,14 @@ import ch.zli.nfcsharer.domain.NFCShareItem;
 
 public class NFCShareItemAdapter extends RecyclerView.Adapter<NFCShareItemAdapter.ViewHolder> {
 
+    private final MainActivity activity;
     List<NFCShareItem> nfcShareItems;
     Context context;
 
-    public NFCShareItemAdapter(List<NFCShareItem> nfcShareItems)
+    public NFCShareItemAdapter(List<NFCShareItem> nfcShareItems, MainActivity activity)
     {
         this.nfcShareItems = nfcShareItems;
+        this.activity = activity;
     }
 
     @Override
@@ -54,10 +56,14 @@ public class NFCShareItemAdapter extends RecyclerView.Adapter<NFCShareItemAdapte
                 }
             });
             nfcShareItem.setEnabled(true);
-            super.notifyDataSetChanged();
+            activity.reloadRecyclerViewAdapter();
         });
         holder.deleteButton.setOnClickListener(listener ->{
-            //TODO
+            activity.getStorageService().removeItem(nfcShareItem);
+            activity.reloadRecyclerViewAdapter();
+        });
+        holder.editButton.setOnClickListener(listener ->{
+            activity.editItem();
         });
     }
 

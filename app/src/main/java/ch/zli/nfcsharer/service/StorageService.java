@@ -56,6 +56,7 @@ public class StorageService extends Service {
     public void removeItem(NFCShareItem item){
         List<NFCShareItem> items = getAll();
         items.remove(item);
+        setAll(items);
     }
 
     public List<NFCShareItem> getAll(){

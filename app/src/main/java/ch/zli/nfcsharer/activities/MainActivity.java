@@ -33,12 +33,12 @@ public class MainActivity extends AppCompatActivity {
             StorageService.LocalBinder binder = (StorageService.LocalBinder) service;
             storageService = binder.getService();
 
-            storageService.clearStorage();
-            storageService.addItem(new NFCShareItem("URI1","http://google.com", true));
-            storageService.addItem(new NFCShareItem("URI2","http://example.org",false));
-            storageService.addItem(new NFCShareItem("URI3","http://youtube.com",false));
-            storageService.addItem(new NFCShareItem("URI3","http://youtube.com",false));
-            nFCShareItemAdapter = new NFCShareItemAdapter(storageService.getAll());
+//            storageService.clearStorage();
+//            storageService.addItem(new NFCShareItem("URI1","http://google.com", true));
+//            storageService.addItem(new NFCShareItem("URI2","http://example.org",false));
+//            storageService.addItem(new NFCShareItem("URI3","http://youtube.com",false));
+//            storageService.addItem(new NFCShareItem("URI4","http://youtube.com",false));
+            nFCShareItemAdapter = new NFCShareItemAdapter(storageService.getAll(), MainActivity.this);
             if (recyclerView != null) {
                 recyclerView.setAdapter(nFCShareItemAdapter);
             }
@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         recyclerView = findViewById(R.id.recyclerView);
 
-
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -75,5 +74,22 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
         unbindService(storageServiceConnection);
         storageServiceBound = false;
+    }
+
+    public void reloadRecyclerViewAdapter(){
+        if (storageServiceBound && recyclerView != null) {
+            nFCShareItemAdapter = new NFCShareItemAdapter(storageService.getAll(), this);
+            recyclerView.setAdapter(nFCShareItemAdapter);
+        }
+    }
+
+    public StorageService getStorageService() {
+        if(storageServiceBound){
+        return storageService;} else{
+            throw new RuntimeException("StorageService not yet bound");
+        }
+    }
+    public void editItem(){
+        //TODO open view
     }
 }
