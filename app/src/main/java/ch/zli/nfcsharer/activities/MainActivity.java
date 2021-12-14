@@ -11,7 +11,6 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.widget.Button;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -65,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        addButton  =findViewById(R.id.addButton);
+        addButton  =findViewById(R.id.createButton);
         addButton.setOnClickListener(listener ->{
             addItem();
         });
@@ -105,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addItem(){
-        Intent resultIntent = new Intent(this, EditActivity.class);
+        Intent resultIntent = new Intent(this, AddActivity.class);
         startActivity(resultIntent);
     }
 }

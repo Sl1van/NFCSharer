@@ -2,4 +2,8 @@
     <string name="app_name">NFCSharer</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
+    <string name="uri_title">URI:</string>
+    <string name="uri">URI</string>
+    <string name="add">Add</string>
+    <string name="name">Name</string>
 </resources>
