@@ -8,7 +8,11 @@ import android.os.IBinder;
 import android.preference.PreferenceManager;
 
 import com.google.gson.Gson;
+import com.google.gson.TypeAdapter;
+import com.google.gson.reflect.TypeToken;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import ch.zli.nfcsharer.domain.NFCShareItem;
@@ -52,12 +56,12 @@ public class StorageService extends Service {
     public void removeItem(NFCShareItem item){
         List<NFCShareItem> items = getAll();
         items.remove(item);
-        setAll(items);
     }
 
     public List<NFCShareItem> getAll(){
         Gson gson = new Gson();
-        return gson.fromJson(sharedPreferences.getString("items", ""), List.class);
+        List<NFCShareItem> list = gson.fromJson(sharedPreferences.getString("items", ""), new TypeToken<List<NFCShareItem>>(){}.getType());
+        return list != null ? list : new ArrayList<>();
     }
 
     private void setAll(List<NFCShareItem> items){
@@ -67,4 +71,9 @@ public class StorageService extends Service {
         editor.putString("items", json);
         editor.apply();
     }
+
+    public void clearStorage(){
+        setAll(new ArrayList<>());
+    }
+
 }
