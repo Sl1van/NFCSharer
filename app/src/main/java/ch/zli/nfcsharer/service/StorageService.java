@@ -45,11 +45,8 @@ public class StorageService extends Service {
 
     public void editItem(NFCShareItem originalItem, NFCShareItem item){
         List<NFCShareItem> items = getAll();
-        items.forEach(item1 ->{
-            if(item1.equals(originalItem)){
-                item1 = item;
-            }
-        });
+        int index = items.indexOf(originalItem);
+        items.set(index, item);
         setAll(items);
     }
 
