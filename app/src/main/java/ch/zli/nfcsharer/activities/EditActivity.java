@@ -1,7 +1,5 @@
 package ch.zli.nfcsharer.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +9,8 @@ import android.os.IBinder;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -59,8 +59,8 @@ public class EditActivity extends AppCompatActivity {
 
         addButton_ = findViewById(R.id.editButton_);
 
-        addButton_.setOnClickListener(listener ->{
-            getStorageService().editItem(originalItem, new NFCShareItem(name,uri,false));
+        addButton_.setOnClickListener(listener -> {
+            getStorageService().editItem(originalItem, new NFCShareItem(name, uri, false));
             Intent resultIntent = new Intent(this, MainActivity.class);
             startActivity(resultIntent);
         });
@@ -98,7 +98,7 @@ public class EditActivity extends AppCompatActivity {
         });
         uriInput_.setText(originalItem.getURI());
         nameInput_.setText(originalItem.getName());
-        name=originalItem.getName();
+        name = originalItem.getName();
         uri = originalItem.getURI();
     }
 
@@ -117,8 +117,9 @@ public class EditActivity extends AppCompatActivity {
     }
 
     public StorageService getStorageService() {
-        if(storageServiceBound){
-            return storageService;} else{
+        if (storageServiceBound) {
+            return storageService;
+        } else {
             throw new RuntimeException("StorageService not yet bound");
         }
     }

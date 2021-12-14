@@ -1,7 +1,7 @@
 package ch.zli.nfcsharer.activities;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,20 +23,18 @@ public class NFCShareItemAdapter extends RecyclerView.Adapter<NFCShareItemAdapte
     List<NFCShareItem> nfcShareItems;
     Context context;
 
-    public NFCShareItemAdapter(List<NFCShareItem> nfcShareItems, MainActivity activity)
-    {
+    public NFCShareItemAdapter(List<NFCShareItem> nfcShareItems, MainActivity activity) {
         this.nfcShareItems = nfcShareItems;
         this.activity = activity;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
         context = parent.getContext();
         return viewHolder;
     }
-
 
 
     @Override
@@ -45,28 +43,27 @@ public class NFCShareItemAdapter extends RecyclerView.Adapter<NFCShareItemAdapte
 
         holder.itemTitle.setText(nfcShareItem.getName());
         holder.description.setText(nfcShareItem.getDescription());
-        holder.cv.setCardBackgroundColor(nfcShareItem.isEnabled()? R.color.teal_200 : R.color.teal_700);
-        System.out.println("nfcShareItem.isEnabled()"+nfcShareItem.isEnabled());
-        holder.cv.setOnClickListener(listener ->{
+        holder.cv.setCardBackgroundColor(nfcShareItem.isEnabled() ? R.color.teal_200 : R.color.teal_700);
+        System.out.println("nfcShareItem.isEnabled()" + nfcShareItem.isEnabled());
+        holder.cv.setOnClickListener(listener -> {
             //Toast.makeText(context,"The position is:"+position,Toast.LENGTH_SHORT).show();//TODO open view
 
-            nfcShareItems.forEach(item ->{
-                if(item.isEnabled()){
+            nfcShareItems.forEach(item -> {
+                if (item.isEnabled()) {
                     item.setEnabled(false);
                 }
             });
             nfcShareItem.setEnabled(true);
             activity.reloadRecyclerViewAdapter();
         });
-        holder.deleteButton.setOnClickListener(listener ->{
+        holder.deleteButton.setOnClickListener(listener -> {
             activity.getStorageService().removeItem(nfcShareItem);
             activity.reloadRecyclerViewAdapter();
         });
-        holder.editButton.setOnClickListener(listener ->{
+        holder.editButton.setOnClickListener(listener -> {
             activity.editItem(nfcShareItem);
         });
     }
-
 
 
     @Override
@@ -74,22 +71,20 @@ public class NFCShareItemAdapter extends RecyclerView.Adapter<NFCShareItemAdapte
         return nfcShareItems.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder
-    {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         TextView itemTitle;
         TextView description;
         Button editButton;
         Button deleteButton;
         CardView cv;
 
-        public ViewHolder(View itemView)
-        {
+        public ViewHolder(View itemView) {
             super(itemView);
-            itemTitle = (TextView)itemView.findViewById(R.id.itemTitle);
-            description = (TextView)itemView.findViewById(R.id.description);
-            editButton = (Button)itemView.findViewById(R.id.editButton);
-            deleteButton = (Button)itemView.findViewById(R.id.deleteButton);
-            cv = (CardView)itemView.findViewById(R.id.cv);
+            itemTitle = (TextView) itemView.findViewById(R.id.itemTitle);
+            description = (TextView) itemView.findViewById(R.id.description);
+            editButton = (Button) itemView.findViewById(R.id.editButton);
+            deleteButton = (Button) itemView.findViewById(R.id.deleteButton);
+            cv = (CardView) itemView.findViewById(R.id.cv);
         }
 
     }

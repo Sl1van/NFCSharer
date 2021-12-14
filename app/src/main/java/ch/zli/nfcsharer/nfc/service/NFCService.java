@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
 
-import ch.zli.nfcsharer.service.StorageService;
-
 public class NFCService extends Service {
     private NFCService.LocalBinder binder = new NFCService.LocalBinder();
 
@@ -22,7 +20,7 @@ public class NFCService extends Service {
         }
     }
 
-    public void createUriTag(String uri){
+    public void createUriTag(String uri) {
 
     }
 

@@ -1,9 +1,7 @@
 package ch.zli.nfcsharer.nfc.service;
 
-        import android.content.Intent;
-        import android.nfc.cardemulation.HostApduService;
-        import android.os.Bundle;
-        import android.os.IBinder;
+import android.nfc.cardemulation.HostApduService;
+import android.os.Bundle;
 
 public class ApduService extends HostApduService {
     @Override

@@ -10,7 +10,7 @@ public class NFCShareItem implements Serializable {
     private String URI;
     private boolean enabled;
 
-    public NFCShareItem(String name, String URI,boolean enabled) {
+    public NFCShareItem(String name, String URI, boolean enabled) {
         this.type = NFCShareItemType.URI;
         this.URI = URI;
         this.name = name;
@@ -38,9 +38,9 @@ public class NFCShareItem implements Serializable {
     }
 
     public String getDescription() {
-        if(type == NFCShareItemType.URI){
+        if (type == NFCShareItemType.URI) {
             return "URI: " + getURI();
-        } else{
+        } else {
             throw new UnsupportedOperationException("Not yet implemented");
         }
     }
