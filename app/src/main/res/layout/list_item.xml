@@ -36,12 +36,27 @@
                 android:text="Place_holder"
                 android:textSize="17sp" />
 
-            <Button
-                android:id="@+id/editButton"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="right"
-                android:text="@string/edit" />
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/editButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="@string/edit" />
+
+                <Button
+                    android:id="@+id/deleteButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="@string/delete" />
+            </LinearLayout>
+
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

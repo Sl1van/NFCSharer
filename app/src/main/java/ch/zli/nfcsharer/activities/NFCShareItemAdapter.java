@@ -56,6 +56,9 @@ public class NFCShareItemAdapter extends RecyclerView.Adapter<NFCShareItemAdapte
             nfcShareItem.setEnabled(true);
             super.notifyDataSetChanged();
         });
+        holder.deleteButton.setOnClickListener(listener ->{
+            //TODO
+        });
     }
 
 
@@ -70,6 +73,7 @@ public class NFCShareItemAdapter extends RecyclerView.Adapter<NFCShareItemAdapte
         TextView itemTitle;
         TextView description;
         Button editButton;
+        Button deleteButton;
         CardView cv;
 
         public ViewHolder(View itemView)
@@ -78,6 +82,7 @@ public class NFCShareItemAdapter extends RecyclerView.Adapter<NFCShareItemAdapte
             itemTitle = (TextView)itemView.findViewById(R.id.itemTitle);
             description = (TextView)itemView.findViewById(R.id.description);
             editButton = (Button)itemView.findViewById(R.id.editButton);
+            deleteButton = (Button)itemView.findViewById(R.id.deleteButton);
             cv = (CardView)itemView.findViewById(R.id.cv);
         }
 
