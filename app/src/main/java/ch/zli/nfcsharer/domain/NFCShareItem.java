@@ -1,6 +1,8 @@
 package ch.zli.nfcsharer.domain;
 
-public class NFCShareItem {
+import java.io.Serializable;
+
+public class NFCShareItem implements Serializable {
     private final NFCShareItemType type;
 
     private String name;
